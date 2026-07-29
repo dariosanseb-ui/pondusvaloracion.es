@@ -3,7 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PONDUS — Valoración Inmobiliaria</title>
+
+  <!-- ── TÍTULO Y DESCRIPCIÓN ── -->
+  <title>Pondus Valoración | Perito inmobiliario · Valoración pericial, retrospectiva y patrimonial · España</title>
+  <meta name="description" content="Valoración inmobiliaria independiente. Periciales judiciales, valoraciones retrospectivas, contradicción de valores administrativos y consultoría técnica de valor. Metodología IVS y ECO. España.">
+  <meta name="author" content="Darío de San Sebastián Ruiz-Ayúcar">
+  <meta name="language" content="es">
+  <link rel="canonical" href="https://pondusvaloracion.es">
+
+  <!-- ── PALABRAS CLAVE TEMÁTICAS ── -->
+  <meta name="keywords" content="valoración inmobiliaria, perito inmobiliario, valoración pericial, informe pericial inmobiliario, valoración retrospectiva, perito judicial inmobiliario, valoración patrimonial, contradicción valor de referencia, valor catastral recurso, valoración IVS, valoración ECO, valoración estados contables, NIIF 13, due diligence inmobiliario, Pondus valoración, Darío de San Sebastián">
+
+  <!-- ── OPEN GRAPH (LinkedIn, WhatsApp, redes) ── -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pondusvaloracion.es">
+  <meta property="og:title" content="Pondus Valoración · Perito inmobiliario independiente">
+  <meta property="og:description" content="Valoración inmobiliaria independiente. Periciales judiciales, retrospectivas y contradicción de valores administrativos. Metodología IVS y ECO. España.">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:site_name" content="Pondus Valoración">
+
+  <!-- ── TWITTER/X CARD ── -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pondus Valoración · Perito inmobiliario independiente">
+  <meta name="twitter:description" content="Valoración inmobiliaria independiente. Periciales judiciales, retrospectivas y contradicción de valores administrativos.">
+
+  <!-- ── SCHEMA.ORG — DATOS ESTRUCTURADOS ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Pondus Valoración",
+    "url": "https://pondusvaloracion.es",
+    "email": "dario@pondusvaloracion.es",
+    "telephone": "+34648701624",
+    "description": "Valoración inmobiliaria independiente especializada en periciales judiciales, valoraciones retrospectivas, contradicción de valores administrativos y consultoría técnica de valor.",
+    "founder": {
+      "@type": "Person",
+      "name": "Darío de San Sebastián Ruiz-Ayúcar",
+      "jobTitle": "Perito inmobiliario y valorador",
+      "memberOf": [
+        {
+          "@type": "Organization",
+          "name": "Royal Institution of Chartered Surveyors (RICS)"
+        },
+        {
+          "@type": "Organization",
+          "name": "Asociación Profesional de Peritos Judiciales y Detectives Privados (APPJD)",
+          "identifier": "nº218"
+        }
+      ]
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "España"
+    },
+    "serviceType": [
+      "Valoración inmobiliaria",
+      "Perito inmobiliario judicial",
+      "Valoración pericial",
+      "Valoración retrospectiva",
+      "Contradicción de valores administrativos",
+      "Valoración para estados contables",
+      "Consultoría técnica de valor",
+      "Informe pericial inmobiliario",
+      "Valoración IVS",
+      "Valoración ECO"
+    ],
+    "knowsLanguage": ["es", "en"],
+    "sameAs": [
+      "https://linkedin.com/in/dariosanseb"
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
@@ -1016,6 +1088,7 @@
 
       /* Nav: reducir gap entre links */
       .nav-links { gap: 20px; }
+      .nav-links a { white-space: nowrap; font-size: 11px; }
 
       /* Hero: reducir fuente del título */
       .hero-left h1 { font-size: clamp(38px, 4.5vw, 54px); }
@@ -1034,7 +1107,10 @@
       .pillar { padding: 28px 24px; }
 
       /* Dossier cta */
-      .dossier-cta-text h3 { font-size: 24px; }
+      .dossier-cta-text h3 { font-size: 18px; white-space: normal; }
+
+      /* Sobre mí — foto centrada y línea completa */
+      .sobre-right { align-self: stretch; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 
       /* Metodo closing */
       .metodo-closing-text { font-size: 24px; max-width: 70%; }
@@ -1089,9 +1165,11 @@
       .pillar:nth-child(2) { padding-left: 0; padding-right: 0; }
       .pillar:nth-child(3) { padding-left: 0; }
 
-      /* ── INICIO: CONTACT BAR ── */
-      .contact-bar { flex-direction: column; gap: 20px; align-items: flex-start; }
-      .contact-bar-items { flex-direction: column; gap: 14px; }
+      /* ── CONTACT BAR MÓVIL ── */
+      .contact-bar { flex-direction: column; gap: 20px; align-items: center; text-align: center; padding: 32px var(--pad-x); }
+      .contact-bar-label { text-align: center; }
+      .contact-bar-items { flex-direction: column; gap: 16px; align-items: center; }
+      .contact-link { justify-content: center; }
 
       /* ── INICIO: DOSSIER CTA ── */
       .dossier-cta { flex-direction: column; gap: 28px; align-items: flex-start; }
@@ -1137,7 +1215,8 @@
         padding-top: 20px;
         grid-column: auto;
       }
-      .metodo-closing { flex-direction: column; gap: 32px; align-items: flex-start; }
+      .metodo-closing { flex-direction: column; gap: 32px; align-items: center; text-align: center; }
+      .metodo-closing-text { max-width: 100%; text-align: center; white-space: normal; }
 
       /* ── SOBRE MÍ: HERO ── */
       .sobre-hero { grid-template-columns: 1fr; }
@@ -1163,10 +1242,16 @@
       .sobre-filosofia-body { padding-left: 0; }
 
       /* ── SOBRE MÍ: CLOSING ── */
-      .sobre-closing { flex-direction: column; gap: 24px; align-items: flex-start; min-height: auto; padding: 40px var(--pad-x); }
+      .sobre-closing { flex-direction: column; gap: 24px; align-items: center; text-align: center; min-height: auto; padding: 40px var(--pad-x); }
+      .sobre-closing-text { white-space: normal; text-align: center; }
 
-      /* ── FUENTES MÓVIL ── */
-      h1.hero-title { font-size: clamp(28px, 8vw, 42px); }
+      /* ── OVERFLOW GLOBAL ── */
+      body, html { overflow-x: hidden; }
+      .hero-body { max-width: 100%; }
+      .cta-row { max-width: 100%; flex-wrap: wrap; gap: 12px; justify-content: center; }
+      .cta-row .btn-outline { margin-left: 0 !important; }
+      .hero-left { padding-right: 0; }
+      h1.hero-title { font-size: clamp(28px, 8vw, 42px); word-break: break-word; }
       .hero-body { font-size: 15px; }
       .eyebrow { font-size: 11px; }
       .section-label { font-size: 11px; }
@@ -1833,7 +1918,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
     <div class="dossier-cta-text">
       <h3 class="dossier-title">Metodología, enfoque y condiciones detalladas en un documento descargable.</h3>
     </div>
-    <a class="btn-solid dossier-btn" href="#">
+    <a class="btn-solid dossier-btn" href="dossier.pdf" target="_blank">
       <i class="ti ti-download" style="margin-right:8px"></i> Descargar dossier
     </a>
   </div>
