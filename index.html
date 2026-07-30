@@ -90,7 +90,8 @@
     :root {
       --bg:           #272725;
       --ink:          #E8E4DC;
-      --ink-dim:      rgba(232,228,220,0.45);
+      --ink-dim:      rgba(232,228,220,0.70);
+      --ink-title:    rgba(232,228,220,0.60);
       --ink-faint:    rgba(232,228,220,0.12);
       --rule:         rgba(232,228,220,0.1);
       --nav-bg:       rgba(39,39,37,0.88);
@@ -114,6 +115,7 @@
       --bg:           #F4F1EC;
       --ink:          #272725;
       --ink-dim:      rgba(39,39,37,0.62);
+      --ink-title:    rgba(39,39,37,0.52);
       --ink-faint:    rgba(39,39,37,0.22);
       --rule:         rgba(39,39,37,0.18);
       --nav-bg:       rgba(244,241,236,0.92);
@@ -567,7 +569,7 @@
     }
 
     .service-tags {
-      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
     }
 
     .tag {
@@ -642,6 +644,7 @@
       line-height: 1.7;
       color: var(--ink-dim);
       font-weight: 300;
+      text-align: justify;
     }
 
     height: 1.9;
@@ -726,7 +729,8 @@
       text-align: justify;
     }
 
-    .metodo-closing-text em { font-style: italic; color: var(--ink-dim); }
+    .metodo-closing-text em { font-style: italic; color: var(--ink-title); }
+    .metodo-title em { color: var(--ink-title); }
 
     /* ─────────────────────────────────────────
        PAGE 4 — SOBRE MÍ (light)
@@ -880,7 +884,7 @@
       text-align: center;
     }
 
-    .contacto-title em { font-style: italic; color: var(--ink-dim); }
+    .contacto-title em { font-style: italic; color: var(--ink-title); }
 
     .contacto-sub {
       font-size: 18px;
@@ -888,6 +892,7 @@
       color: var(--ink-dim);
       font-weight: 300;
       margin-bottom: 32px;
+      text-align: justify;
     }
 
     .contacto-phone {
@@ -1066,24 +1071,36 @@
       list-style: none;
       background: var(--bg);
       border-bottom: 0.5px solid var(--rule);
-      padding: 8px var(--pad-x) 16px;
+      padding: 8px var(--pad-x) 24px;
       transition: background 0.35s ease;
     }
     .nav-drawer.open { display: flex; }
+    #nav-drawer-global {
+      position: fixed;
+      top: 80px;
+      left: 0;
+      right: 0;
+      z-index: 199;
+    }
     .nav-drawer a {
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      font-family: var(--serif);
+      font-size: 22px;
+      letter-spacing: 0.02em;
+      text-transform: none;
       color: var(--ink-dim);
       text-decoration: none;
       cursor: pointer;
-      padding: 12px 0;
+      padding: 22px 0;
       border-bottom: 0.5px solid var(--rule);
       transition: color 0.2s;
+      text-align: center;
     }
     .nav-drawer a:last-child { border-bottom: none; }
     .nav-drawer a:hover,
     .nav-drawer a.active { color: var(--ink); }
+
+    /* Nav global solo visible en móvil */
+    .nav-fixed-mobile { display: none; }
 
     @media (max-width: 1100px) and (min-width: 769px) {
       :root { --pad-x: 40px; }
@@ -1125,8 +1142,13 @@
       :root { --pad-x: 24px; --pad-y: 48px; }
 
       /* ── NAV ── */
+      .page { padding-top: 80px; }
       .nav-links { display: none; }
       .nav-hamburger { display: block; }
+      .nav-fixed-mobile { display: flex; position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: var(--bg); border-bottom: 0.5px solid var(--rule); }
+      #nav-drawer-global { position: fixed; top: 80px; left: 0; right: 0; z-index: 199; }
+      .page > .nav { display: none !important; }
+      .page > ul.nav-drawer { display: none !important; }
 
       /* ── INICIO: HERO ──
          Orden en móvil: texto → logo → credenciales
@@ -1156,8 +1178,9 @@
         border-left: none;
         border-top: 0.5px solid var(--rule);
         padding-left: 0;
-        padding-top: 32px;
+        padding-top: 24px;
       }
+      .credential { padding: 18px 0; }
       .hero-left h1 { font-size: clamp(36px, 9vw, 52px); }
 
       /* ── INICIO: PILLARS ── */
@@ -1177,57 +1200,60 @@
       .dossier-cta { flex-direction: column; gap: 28px; align-items: flex-start; }
 
       /* ── SERVICIOS: PAGE HEADER ── */
-      .page-header { grid-template-columns: 1fr; }
+      .page-header { grid-template-columns: 1fr; padding: 48px var(--pad-x) 32px; }
       .page-header-right {
         border-left: none;
         padding-left: 0;
         border-top: 0.5px solid var(--rule);
-        padding-top: 28px;
-        margin-top: 28px;
+        padding-top: 20px;
+        margin-top: 20px;
       }
 
       /* ── SERVICIOS: BLOQUES ── */
-      .service-item { grid-template-columns: 1fr; }
+      .service-item { grid-template-columns: 1fr; padding: 24px 0; }
       .service-item:first-child { border-top: none; }
-      .service-left { padding-right: 0; margin-bottom: 20px; }
+      .service-left { padding-right: 0; margin-bottom: 24px; }
+      .service-num { margin-bottom: 8px; }
       .service-right {
         border-left: none;
         padding-left: 0;
-        border-top: 0.5px solid var(--rule);
-        padding-top: 20px;
+        border-top: none;
+        padding-top: 0;
       }
 
+      .dossier-cta { padding: 32px var(--pad-x); }
+
       /* ── METODOLOGÍA: HEADER ── */
-      .metodo-hero { grid-template-columns: 1fr; }
+      .metodo-hero { grid-template-columns: 1fr; padding: 48px var(--pad-x) 32px; }
       .metodo-hero-right {
         border-left: none;
         padding-left: 0;
         border-top: 0.5px solid var(--rule);
-        padding-top: 32px;
-        margin-top: 32px;
+        padding-top: 20px;
+        margin-top: 20px;
       }
 
       /* ── METODOLOGÍA: BLOQUES (igual que servicios) ── */
-      .metodo-block { grid-template-columns: 1fr; }
-      .metodo-block-left { padding-right: 0; margin-bottom: 20px; text-align: left; align-items: flex-start; }
+      .metodo-block { grid-template-columns: 1fr; padding: 32px var(--pad-x); }
+      .metodo-block-left { padding-right: 0; margin-bottom: 16px; text-align: left; align-items: flex-start; }
       .metodo-block-right {
         border-left: none;
         padding-left: 0;
         border-top: 0.5px solid var(--rule);
-        padding-top: 20px;
+        padding-top: 16px;
         grid-column: auto;
       }
-      .metodo-closing { flex-direction: column; gap: 32px; align-items: center; text-align: center; }
+      .metodo-closing { padding: 32px var(--pad-x); flex-direction: column; gap: 24px; align-items: center; text-align: center; }
       .metodo-closing-text { max-width: 100%; text-align: center; white-space: normal; }
 
       /* ── SOBRE MÍ: HERO ── */
-      .sobre-hero { grid-template-columns: 1fr; }
-      .sobre-left { padding-right: 0; margin-bottom: 40px; }
-      .sobre-right { border-left: none; padding-left: 0; border-top: 0.5px solid var(--rule); padding-top: 32px; }
+      .sobre-hero { grid-template-columns: 1fr; padding: 48px var(--pad-x) 32px; }
+      .sobre-left { padding-right: 0; margin-bottom: 24px; }
+      .sobre-right { border-left: none; padding-left: 0; border-top: 0.5px solid var(--rule); padding-top: 20px; }
 
       /* ── SOBRE MÍ: CREDENCIALES ── */
-      .sobre-credentials { grid-template-columns: 1fr; }
-      .sobre-credential { border-right: none; border-bottom: 0.5px solid var(--rule); padding: 28px 0; }
+      .sobre-credentials { grid-template-columns: 1fr; padding: 32px var(--pad-x); }
+      .sobre-credential { border-right: none; border-bottom: 0.5px solid var(--rule); padding: 20px 0; }
       .sobre-credential:last-child { border-bottom: none; padding-left: 0; }
       .sobre-credential:nth-child(2) { padding-left: 0; }
       .sobre-credential:nth-child(3) { padding-left: 0; }
@@ -1237,15 +1263,19 @@
       .sobre-filosofia-title {
         border-right: none;
         padding-right: 0;
-        padding-bottom: 24px;
+        padding-bottom: 16px;
         border-bottom: 0.5px solid var(--rule);
-        margin-bottom: 24px;
+        margin-bottom: 16px;
       }
       .sobre-filosofia-body { padding-left: 0; }
 
       /* ── SOBRE MÍ: CLOSING ── */
-      .sobre-closing { flex-direction: column; gap: 24px; align-items: center; text-align: center; min-height: auto; padding: 40px var(--pad-x); }
+      .sobre-closing { flex-direction: column; gap: 20px; align-items: center; text-align: center; min-height: auto; padding: 32px var(--pad-x); }
       .sobre-closing-text { white-space: normal; text-align: center; }
+
+      /* ── CONTACTO ── */
+      .contacto-wrap { padding: 56px var(--pad-x) 40px; }
+      .contacto-form { padding-top: 32px; }
 
       /* ── OVERFLOW GLOBAL ── */
       body, html { overflow-x: hidden; }
@@ -1255,7 +1285,7 @@
       .hero-left { padding-right: 0; }
       h1.hero-title { font-size: clamp(28px, 8vw, 42px); word-break: break-word; }
       .hero-body { font-size: 15px; }
-      .eyebrow { font-size: 11px; }
+      .eyebrow { font-size: 10px; letter-spacing: 0.18em; }
       .section-label { font-size: 11px; }
 
       .pillar h3 { font-size: 22px; }
@@ -1270,6 +1300,7 @@
       .service-num { font-size: 22px; }
       .service-title { font-size: 22px; }
       .service-desc { font-size: 15px; }
+      .service-tags { justify-content: center; }
 
       .metodo-hero h2 { font-size: 28px; }
       .metodo-hero-right p { font-size: 15px; }
@@ -1285,6 +1316,7 @@
 
       .contacto-title { font-size: clamp(28px, 7vw, 42px); }
       .contacto-sub { font-size: 15px; }
+      .contacto-phone-label { font-size: 11.5px; letter-spacing: 0.1em; }
       .contacto-phone { font-size: clamp(24px, 6vw, 36px); }
       .dossier-cta-text h3 { font-size: 18px; white-space: normal; }
 
@@ -1292,9 +1324,10 @@
 
       /* ── DRAWER: padding interior ── */
       .nav-drawer { padding: 8px var(--pad-x) 24px; gap: 4px; }
-      .nav-drawer a { padding: 14px 0; font-size: 13px; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .footer-links { flex-wrap: wrap; gap: 16px; }
+      .nav-drawer a { padding: 14px 0; font-size: 20px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .footer-links { flex-wrap: nowrap; gap: 10px; width: 100%; }
+      .footer-link { font-size: 10.5px; letter-spacing: 0.06em; white-space: nowrap; }
 
       /* Footer */
       footer { flex-direction: column; gap: 8px; align-items: flex-start; }
@@ -1386,6 +1419,33 @@
 </head>
 <body>
 
+<!-- ════ NAV FIJO GLOBAL (móvil) ════ -->
+<nav class="nav nav-fixed-mobile" id="nav-global">
+  <span class="nav-logo" onclick="go('inicio')">PONDUS</span>
+  <ul class="nav-links">
+    <li><a onclick="go('inicio')" id="nav-link-inicio">Inicio</a></li>
+    <li><a onclick="go('servicios')" id="nav-link-servicios">Servicios</a></li>
+    <li><a onclick="go('metodologia')" id="nav-link-metodologia">Metodología</a></li>
+    <li><a onclick="go('sobre')" id="nav-link-sobre">Sobre mí</a></li>
+    <li><a onclick="go('contacto')" id="nav-link-contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-controls">
+    <button class="lang-toggle" onclick="toggleLang()" title="Switch language">
+    <span class="lang-icon lang-es" id="lang-icon-es"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 14" width="22" height="16"><rect width="20" height="14" fill="#c60b1e"/><rect y="3.5" width="20" height="7" fill="#ffc400"/></svg></span>
+    <span class="lang-icon lang-en" id="lang-icon-en" style="display:none"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="22" height="16"><clipPath id="ag"><path d="M0 0v30h60V0z"/></clipPath><clipPath id="bg"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><g clip-path="url(#ag)"><path d="M0 0v30h60V0z" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#bg)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></g></svg></span>
+    </button>
+    <button class="theme-toggle" id="theme-btn-global" onclick="toggleTheme()" title="Cambiar modo"><i class="ti ti-sun theme-icon"></i></button>
+  </div>
+  <button class="nav-hamburger" onclick="toggleDrawerGlobal()" aria-label="Menú"><i class="ti ti-menu-2"></i></button>
+</nav>
+<ul class="nav-drawer" id="nav-drawer-global">
+  <li><a onclick="go('inicio');closeDrawerGlobal()">Inicio</a></li>
+  <li><a onclick="go('servicios');closeDrawerGlobal()">Servicios</a></li>
+  <li><a onclick="go('metodologia');closeDrawerGlobal()">Metodología</a></li>
+  <li><a onclick="go('sobre');closeDrawerGlobal()">Sobre mí</a></li>
+  <li><a onclick="go('contacto');closeDrawerGlobal()">Contacto</a></li>
+</ul>
+
 <!-- ════════════════════════════════════════════
      PAGE 1 — INICIO
 ════════════════════════════════════════════ -->
@@ -1419,7 +1479,7 @@
   <section class="hero">
     <div class="hero-left">
       <span class="eyebrow eyebrow-inicio">Valoración · Pericial · Patrimonio</span>
-      <h1 class="hero-title">Más allá<br><em style="font-style:italic;color:var(--ink-dim);">de los números.</em></h1>
+      <h1 class="hero-title">Más allá<br><em style="font-style:italic;color:var(--ink-title);">de los números.</em></h1>
       <p class="hero-body" data-lang="hero_body">Una valoración termina con un número, pero detrás de él hay una historia. Saber contarla es lo que hace que esa cifra pueda entenderse.</p>
       <div class="cta-row">
         <a class="btn-solid cta-servicios" onclick="go('servicios')">Ver servicios</a>
@@ -1429,7 +1489,7 @@
       </div>
     </div>
     <div class="hero-center">
-      <div style="width:340px;color:var(--ink);opacity:0.15;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 753.500000 784.487269" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;"><g transform="translate(-14.000000,809.065996) scale(0.100000,-0.100000)"
+      <div style="width:340px;color:var(--ink);opacity:0.65;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 753.500000 784.487269" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;display:block;"><g transform="translate(-14.000000,809.065996) scale(0.100000,-0.100000)"
 fill="currentColor" stroke="none">
 <path d="M3857 8015 l-58 -76 56 -69 c31 -39 59 -70 63 -70 4 0 31 32 60 71
 l52 71 -31 43 c-17 24 -43 58 -58 75 l-26 31 -58 -76z m113 -75 c0 -8 -13 -30
@@ -1819,10 +1879,10 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
   <div class="page-header">
     <div>
       <span class="eyebrow servicios-eyebrow">Lo que hacemos</span>
-      <h2 style="text-align:center;"><span class="servicios-title1">Pocas cosas,</span><br><em class="servicios-title2" style="font-style:normal;color:var(--ink-dim);">bien hechas.</em></h2>
+      <h2 style="text-align:center;"><span class="servicios-title1">Pocas cosas,</span><br><em class="servicios-title2" style="font-style:normal;color:var(--ink-title);">bien hechas.</em></h2>
     </div>
     <div class="page-header-right">
-      <p style="font-size:18px;line-height:1.75;color:var(--ink-dim);font-weight:300;text-align:justify;"><span class="servicios-sub">"Quien mucho abarca, poco aprieta". Con los años hemos preferido centrarnos en pocos ámbitos donde podemos aportar algo de valor real. No por falta de curiosidad, sino por una cuestión de foco. Pocas cosas. Bien hechas.</span>. Con los años hemos preferido centrarnos en pocos ámbitos donde podemos aportar algo de valor real. No por falta de curiosidad, sino por una cuestión de foco. Pocas cosas. Bien hechas.</p>
+      <p style="font-size:18px;line-height:1.75;color:var(--ink-dim);font-weight:300;text-align:justify;"><span class="servicios-sub">"Quien mucho abarca, poco aprieta". Con los años hemos preferido centrarnos en pocos ámbitos donde podemos aportar algo de valor real. No por falta de curiosidad, sino por una cuestión de foco. Pocas cosas. Bien hechas.</span></p>
     </div>
   </div>
 
@@ -1837,10 +1897,11 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
         <p class="service-desc s01-p1">Hay momentos en los que un valor deja de ser una conversación de café y empieza a tener consecuencias reales. Una compraventa importante. Una herencia que la familia quiere resolver de mutuo acuerdo. Un patrimonio que necesita conocerse antes de tomar una decisión. Ahí es donde hace falta hilar fino.</p>
         <p class="service-desc s01-p2" style="margin-top:16px;">Valoraciones de todo tipo de activos inmobiliarios conforme estándares internacionales, desde una vivienda, trastero o local hasta activos hoteleros o derechos reales.</p>
         <div class="service-tags">
-          <span class="tag">Residencial</span>
-          <span class="tag">Comercial</span>
-          <span class="tag">Patrimonial</span>
-          <span class="tag">IVS · ECO · LEC</span>
+          <span class="tag s01-tag1">Residencial</span>
+          <span class="tag s01-tag2">Comercial</span>
+          <span class="tag s01-tag3">Industrial</span>
+          <span class="tag s01-tag4">Hotelero</span>
+          <span class="tag s01-tag5">Normas Internacionales de Valoración</span>
         </div>
       </div>
     </div>
@@ -1854,10 +1915,10 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
         <p class="service-desc s02-p1">Un informe pericial tiene que aguantar que alguien tire del hilo. Un juez que pregunta. Un abogado contrario que busca la grieta. Otro perito que cuestiona cada decisión. En esos casos, la diferencia entre un informe fuerte y uno débil no está en el número final: está en el camino hasta ese resultado.</p>
         <p class="service-desc s02-p2" style="margin-top:16px;">Disolución de régimen matrimonial, herencias complejas y otros procedimientos judiciales.</p>
         <div class="service-tags">
-          <span class="tag">Pericial judicial</span>
-          <span class="tag">Retrospectiva</span>
-          <span class="tag">Herencias</span>
-          <span class="tag">Litigios</span>
+          <span class="tag s02-tag1">Periciales</span>
+          <span class="tag s02-tag2">Herencias</span>
+          <span class="tag s02-tag3">Divorcios</span>
+          <span class="tag s02-tag4">Litigios complejos</span>
         </div>
       </div>
     </div>
@@ -1871,11 +1932,11 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
         <p class="service-desc s03-p1">No todas las valoraciones acaban en un juzgado. Algunas terminan en un balance. Y cuando una cifra entra en las cuentas de una empresa, deja de ser solo un número. Empieza a formar parte de decisiones de inversión, auditorías y de la imagen fiel que reflejan los estados financieros.</p>
         <p class="service-desc s03-p2" style="margin-top:16px;">Adquisiciones, test de deterioro, fusiones y reorganizaciones societarias.</p>
         <div class="service-tags">
-          <span class="tag">NIIF 13</span>
-          <span class="tag">PGC</span>
-          <span class="tag">Test de deterioro</span>
-          <span class="tag">Auditoría</span>
-          <span class="tag">Activos en balance</span>
+          <span class="tag s03-tag1">NIIF 13</span>
+          <span class="tag s03-tag2">PGC</span>
+          <span class="tag s03-tag3">Test de deterioro</span>
+          <span class="tag s03-tag4">Auditoría</span>
+          <span class="tag s03-tag5">Activos en balance</span>
         </div>
       </div>
     </div>
@@ -1906,10 +1967,10 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
         <p class="service-desc s05-p1">El inmobiliario tiene bastante de relaciones personales e información que pasa de mano en mano. También tiene algo de ruido: opiniones cruzadas, recomendaciones de dudosa confianza, intermediarios de intermediarios. Cuando hay patrimonio importante encima de la mesa, caminar sobre barro rara vez es buena idea. A veces lo que hace falta es transformar ese ruido en algo con lo que tomar decisiones con claridad.</p>
         <p class="service-desc s05-p2" style="margin-top:16px;">Acompañamiento técnico en compraventa, inversión, negociación y due diligence.</p>
         <div class="service-tags">
-          <span class="tag">Compraventa</span>
-          <span class="tag">Inversión</span>
-          <span class="tag">Negociación</span>
-          <span class="tag">Due diligence</span>
+          <span class="tag s05-tag1">Compraventa</span>
+          <span class="tag s05-tag2">Inversión</span>
+          <span class="tag s05-tag3">Negociación</span>
+          <span class="tag s05-tag4">Due diligence</span>
         </div>
       </div>
     </div>
@@ -2248,12 +2309,24 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
   function closeDrawer() {
     document.querySelectorAll('.nav-drawer.open').forEach(d => d.classList.remove('open'));
   }
+  function toggleDrawerGlobal() {
+    const drawer = document.getElementById('nav-drawer-global');
+    if (drawer) drawer.classList.toggle('open');
+  }
+  function closeDrawerGlobal() {
+    const drawer = document.getElementById('nav-drawer-global');
+    if (drawer) drawer.classList.remove('open');
+  }
 
   // ── IDIOMA ──
   const t = {
     es: {
       phone_label: "Llamada directa · Respuesta inmediata",
+      s01_tag1: "Residencial", s01_tag2: "Comercial", s01_tag3: "Industrial", s01_tag4: "Hotelero", s01_tag5: "Normas Internacionales de Valoración",
+      s02_tag1: "Periciales", s02_tag2: "Herencias", s02_tag3: "Divorcios", s02_tag4: "Litigios complejos",
+      s03_tag1: "NIIF 13", s03_tag2: "PGC", s03_tag3: "Test de deterioro", s03_tag4: "Auditoría", s03_tag5: "Activos en balance",
       s04_tag1: "Valor de Referencia", s04_tag2: "Catastro", s04_tag3: "IBI", s04_tag4: "Pericial contradictoria",
+      s05_tag1: "Compraventa", s05_tag2: "Inversión", s05_tag3: "Negociación", s05_tag4: "Due diligence",
       sobre_p1: "Llevo cerca de diez años vinculado al sector inmobiliario desde ángulos distintos: intermediación, pericial, formación y valoración. Si algo me ha enseñado este sector es que entender un inmueble no consiste solo en mirar números. También consiste en entender personas, tiempos y decisiones que muchas veces tienen un peso enorme para quien las toma.",
       sobre_p2: "La docencia —especialmente en valoración para peritos judiciales— cambió bastante mi forma de trabajar. Enseñar obliga a ordenar ideas, a separar la paja del grano y a preguntarte si un concepto realmente se entiende o simplemente suena técnico.",
       sobre_p3: "Pondus es el proyecto donde todo eso se aplica de forma independiente. En proceso de acreditación con la Royal Institution of Chartered Surveyors. Asociación Profesional de Peritos Judiciales y Detectives Privados (APPJD), nº218.",
@@ -2265,7 +2338,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       nav_sobre: "Sobre mí", nav_contacto: "Contacto",
       // INICIO
       eyebrow_inicio: "Valoración · Pericial · Patrimonio",
-      hero_title: "Más allá<br><em style=\"font-style:italic;color:var(--ink-dim)\">de los números.</em>",
+      hero_title: "Más allá<br><em style=\"font-style:italic;color:var(--ink-title)\">de los números.</em>",
       hero_body: "Una valoración termina con un número, pero detrás de él hay una historia. Saber contarla es lo que hace que esa cifra pueda entenderse.",
       cta_servicios: "Ver servicios", cta_metodologia: "Metodología",
       // ENFOQUE
@@ -2281,7 +2354,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       // SERVICIOS
       servicios_eyebrow: "Lo que hacemos",
       servicios_title1: "Pocas cosas,", servicios_title2: "bien hechas.",
-      servicios_sub: '<span class="servicios-sub">"Quien mucho abarca, poco aprieta". Con los años hemos preferido centrarnos en pocos ámbitos donde podemos aportar algo de valor real. No por falta de curiosidad, sino por una cuestión de foco. Pocas cosas. Bien hechas.</span>. Con los años hemos preferido centrarnos en pocos ámbitos donde podemos aportar algo de valor real. No por falta de curiosidad, sino por una cuestión de foco. Pocas cosas. Bien hechas.',
+      servicios_sub: '"Quien mucho abarca, poco aprieta". Con los años hemos preferido centrarnos en pocos ámbitos donde podemos aportar algo de valor real. No por falta de curiosidad, sino por una cuestión de foco. Pocas cosas. Bien hechas.',
       s01_title: "Valoración",
       s01_p1: "Hay momentos en los que un valor deja de ser una conversación de café y empieza a tener consecuencias reales. Una compraventa importante. Una herencia que la familia quiere resolver de mutuo acuerdo. Un patrimonio que necesita conocerse antes de tomar una decisión. Ahí es donde hace falta hilar fino.",
       s01_p2: "Valoraciones de todo tipo de activos inmobiliarios conforme estándares internacionales, desde una vivienda, trastero o local hasta activos hoteleros o derechos reales.",
@@ -2330,10 +2403,16 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       nombre_label: "Nombre", mensaje_label: "Mensaje", enviar_btn: "Enviar mensaje",
       // FOOTER
       footer_servicios: "Servicios", footer_metodo: "Metodología", footer_contacto: "Contacto",
+      footer_copy: "© 2025 Pondus Valoración",
+      menu_label: "Menú",
     },
     en: {
       phone_label: "Direct call · Immediate response",
+      s01_tag1: "Residential", s01_tag2: "Commercial", s01_tag3: "Industrial", s01_tag4: "Hotel", s01_tag5: "International Valuation Standards",
+      s02_tag1: "Expert witness", s02_tag2: "Estates", s02_tag3: "Divorce", s02_tag4: "Complex litigation",
+      s03_tag1: "IFRS 13", s03_tag2: "Spanish GAAP (PGC)", s03_tag3: "Impairment testing", s03_tag4: "Audit", s03_tag5: "Balance sheet assets",
       s04_tag1: "Reference Value", s04_tag2: "Cadastre", s04_tag3: "Property Tax", s04_tag4: "Contradictory expert report",
+      s05_tag1: "Purchase & sale", s05_tag2: "Investment", s05_tag3: "Negotiation", s05_tag4: "Due diligence",
       sobre_p1: "I have been involved in real estate from different angles for nearly ten years: agency, expert witness work, teaching and valuation. If there is one thing this sector has taught me, it is that understanding a property is not just about looking at numbers. It is also about understanding people, timelines and decisions that often carry an enormous weight for those who have to make them.",
       sobre_p2: "Teaching — particularly valuation for court-appointed experts — changed the way I work quite significantly. Teaching forces you to order your thoughts, separate what matters from what does not, and ask yourself whether a concept is genuinely understood or just sounds technical.",
       sobre_p3: "Pondus is the project where all of that is applied independently. In the process of accreditation with the Royal Institution of Chartered Surveyors. Member of the Asociación Profesional de Peritos Judiciales y Detectives Privados (APPJD), nº218.",
@@ -2345,7 +2424,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       nav_sobre: "About", nav_contacto: "Contact",
       // INICIO
       eyebrow_inicio: "Valuation · Expert Witness · Property",
-      hero_title: "Beyond<br><em style=\"font-style:italic;color:var(--ink-dim)\">the numbers.</em>",
+      hero_title: "Beyond<br><em style=\"font-style:italic;color:var(--ink-title)\">the numbers.</em>",
       hero_body: "A valuation ends with a figure, but behind it there is a story. Being able to tell that story is what makes the number mean something.",
       cta_servicios: "Our services", cta_metodologia: "Methodology",
       // ENFOQUE
@@ -2410,6 +2489,8 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       nombre_label: "Name", mensaje_label: "Message", enviar_btn: "Send message",
       // FOOTER
       footer_servicios: "Services", footer_metodo: "Methodology", footer_contacto: "Contact",
+      footer_copy: "© 2025 Pondus Valuation",
+      menu_label: "Menu",
     }
   };
 
@@ -2433,7 +2514,11 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
     document.querySelectorAll('.nav-drawer a[onclick*="sobre"]').forEach(el => el.innerHTML = l.nav_sobre);
     document.querySelectorAll('.nav-drawer a[onclick*="contacto"]').forEach(el => el.innerHTML = l.nav_contacto);
     set('.phone-label', l.phone_label);
+    set('.s01-tag1', l.s01_tag1); set('.s01-tag2', l.s01_tag2); set('.s01-tag3', l.s01_tag3); set('.s01-tag4', l.s01_tag4); set('.s01-tag5', l.s01_tag5);
+    set('.s02-tag1', l.s02_tag1); set('.s02-tag2', l.s02_tag2); set('.s02-tag3', l.s02_tag3); set('.s02-tag4', l.s02_tag4);
+    set('.s03-tag1', l.s03_tag1); set('.s03-tag2', l.s03_tag2); set('.s03-tag3', l.s03_tag3); set('.s03-tag4', l.s03_tag4); set('.s03-tag5', l.s03_tag5);
     set('.s04-tag1', l.s04_tag1); set('.s04-tag2', l.s04_tag2); set('.s04-tag3', l.s04_tag3); set('.s04-tag4', l.s04_tag4);
+    set('.s05-tag1', l.s05_tag1); set('.s05-tag2', l.s05_tag2); set('.s05-tag3', l.s05_tag3); set('.s05-tag4', l.s05_tag4);
     // Placeholders
     document.querySelectorAll('[data-ph-' + lang + ']').forEach(el => {
       el.placeholder = el.getAttribute('data-ph-' + lang);
@@ -2501,6 +2586,8 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
     document.querySelectorAll('.footer-link[onclick*="servicios"]').forEach(el => el.innerHTML = l.footer_servicios);
     document.querySelectorAll('.footer-link[onclick*="metodologia"]').forEach(el => el.innerHTML = l.footer_metodo);
     document.querySelectorAll('.footer-link[onclick*="contacto"]').forEach(el => el.innerHTML = l.footer_contacto);
+    set('.footer-copy', l.footer_copy);
+    document.querySelectorAll('.nav-hamburger').forEach(el => el.setAttribute('aria-label', l.menu_label));
     // Bandera
     document.querySelectorAll('#lang-icon-es').forEach(el => el.style.display = lang === 'es' ? 'inline' : 'none');
     document.querySelectorAll('#lang-icon-en').forEach(el => el.style.display = lang === 'en' ? 'inline' : 'none');
