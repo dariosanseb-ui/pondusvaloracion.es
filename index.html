@@ -100,6 +100,7 @@
       --bg:           #272725;
       --ink:          #E8E4DC;
       --ink-dim:      rgba(232,228,220,0.70);
+      --ink-dim-50:   rgba(232,228,220,0.50);
       --ink-title:    rgba(232,228,220,0.60);
       --ink-faint:    rgba(232,228,220,0.12);
       --rule:         rgba(232,228,220,0.1);
@@ -124,6 +125,7 @@
       --bg:           #F4F1EC;
       --ink:          #272725;
       --ink-dim:      rgba(39,39,37,0.62);
+      --ink-dim-50:   rgba(39,39,37,0.50);
       --ink-title:    rgba(39,39,37,0.52);
       --ink-faint:    rgba(39,39,37,0.22);
       --rule:         rgba(39,39,37,0.18);
@@ -1173,6 +1175,35 @@
 
     @media (max-width: 768px) {
       :root { --pad-x: 24px; --pad-y: 48px; }
+
+      /* ── PRUEBA DE CONTRASTE (solo móvil) ──
+         Texto descriptivo: se quita el "dim", color pleno (se lee peor por ser letra pequeña).
+         Títulos de sección/componente (NO los títulos de página): se les mete el "dim",
+         se leen bien igual por ser letra grande. */
+      .hero-body,
+      .credential-desc,
+      .pillar p,
+      .service-desc,
+      .metodo-hero-right p,
+      .metodo-block-content p,
+      .sobre-left p,
+      .sobre-credential-desc,
+      .contacto-sub,
+      .page-header-body {
+        color: var(--ink) !important;
+      }
+
+      .pillar h3,
+      .credential-name,
+      .metodo-block-content h3,
+      .service-title,
+      .sobre-credential-title,
+      .dossier-cta-text h3,
+      .contacto-form h3,
+      .sobre-closing-text,
+      .sobre-closing-text em {
+        color: var(--ink-dim-50) !important;
+      }
 
       /* ── NAV ── */
       .page { padding-top: 80px; }
