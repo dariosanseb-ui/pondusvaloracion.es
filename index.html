@@ -1197,7 +1197,7 @@
       .contact-link { justify-content: center; }
 
       /* ── INICIO: DOSSIER CTA ── */
-      .dossier-cta { flex-direction: column; gap: 28px; align-items: flex-start; }
+      .dossier-cta { flex-direction: column; gap: 28px; align-items: center; text-align: center; }
 
       /* ── SERVICIOS: PAGE HEADER ── */
       .page-header { grid-template-columns: 1fr; padding: 48px var(--pad-x) 32px; }
@@ -1282,6 +1282,7 @@
       .hero-body { max-width: 100%; }
       .cta-row { max-width: 100%; flex-wrap: wrap; gap: 12px; justify-content: center; }
       .cta-row .btn-outline { margin-left: 0 !important; }
+      .cta-servicios, .cta-metodologia { white-space: nowrap; font-size: 10.5px; letter-spacing: 0.12em; padding: 12px 18px; }
       .hero-left { padding-right: 0; }
       h1.hero-title { font-size: clamp(28px, 8vw, 42px); word-break: break-word; }
       .hero-body { font-size: 15px; }
@@ -1335,6 +1336,10 @@
       /* Nav: mostrar solo logo + toggle en móvil */
       .nav-links { display: none; }
 
+    }
+
+    @media (max-width: 360px) {
+      .cta-servicios, .cta-metodologia { font-size: 9.5px; letter-spacing: 0.08em; padding: 11px 14px; }
     }
 
 
@@ -1828,7 +1833,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
         <i class="ti ti-brand-linkedin"></i> LinkedIn
       </a>
     </div>
-    <a href="tel:+36648701624" class="btn-outline">
+    <a href="tel:+34648701624" class="btn-outline">
       <i class="ti ti-phone"></i> <span class="llamar-link">Llamar ahora</span>
     </a>
   </div>
