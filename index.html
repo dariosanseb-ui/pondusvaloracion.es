@@ -195,13 +195,16 @@
       letter-spacing: 0.2em;
       cursor: pointer;
       color: var(--ink);
-      transition: color 0.35s ease;
-      flex: 1;
+      transition: color 0.35s ease, font-size 0.2s ease;
+      flex: 1 1 0;
+      min-width: 0;
+      white-space: nowrap;
     }
 
     .nav-links {
       display: flex; gap: 32px; list-style: none; align-items: center;
       position: absolute; left: 50%; transform: translateX(-50%);
+      white-space: nowrap;
     }
 
     .nav-links a {
@@ -402,7 +405,7 @@
       padding: 26px 0;
       border-bottom: 0.5px solid var(--rule);
     }
-    .credential:last-child { border-bottom: none; }
+    .credential:last-child { border-bottom: none; padding-bottom: 12px; }
 
     .credential-name {
       font-family: var(--serif);
@@ -422,7 +425,7 @@
 
     /* pillars */
     .pillars {
-      padding: 36px var(--pad-x);
+      padding: 20px var(--pad-x) 36px;
     }
 
     .pillars-header {
@@ -633,6 +636,9 @@
       font-weight: 400;
       line-height: 1.08;
       text-align: center;
+      padding-right: 32px;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .metodo-hero h2 em {
@@ -650,15 +656,10 @@
 
     .metodo-hero-right p {
       font-size: 20px;
-      line-height: 1.7;
+      line-height: 1.9;
       color: var(--ink-dim);
       font-weight: 300;
       text-align: justify;
-    }
-
-    height: 1.9;
-      color: var(--ink-dim);
-      font-weight: 300;
     }
 
     .metodo-blocks {
@@ -1114,9 +1115,14 @@
     @media (max-width: 1100px) and (min-width: 769px) {
       :root { --pad-x: 40px; }
 
-      /* Nav: reducir gap entre links */
+      /* Nav: reducir gap entre links y tamaño del logo */
+      .nav-logo { font-size: 18px; }
       .nav-links { gap: 20px; }
       .nav-links a { white-space: nowrap; font-size: 11px; }
+
+      /* Metodología: menos padding en la columna derecha para no comer texto */
+      .metodo-hero-right { padding-left: 28px; }
+      .metodo-hero h2 { padding-right: 20px; font-size: clamp(32px, 5vw, 46px); }
 
       /* Hero: reducir fuente del título */
       .hero-left h1 { font-size: clamp(38px, 4.5vw, 54px); }
@@ -1131,11 +1137,29 @@
       /* Sobre mí */
       .sobre-hero { grid-template-columns: 2fr 1fr; }
 
-      /* Pillars: reducir padding */
-      .pillar { padding: 28px 24px; }
+      /* Pillars: reducir padding y tipografía para que los títulos quepan en una línea */
+      .pillar { padding: 28px 20px; }
+      .pillar-num { font-size: 26px; margin-bottom: 10px; }
+      .pillar h3 { font-size: clamp(18px, 2.2vw, 24px); white-space: nowrap; margin-bottom: 10px; }
+      .pillar p { font-size: 14.5px; }
+
+      /* Barra de contacto: que quepa todo en una línea, con separación */
+      .contact-bar { padding: 16px var(--pad-x); min-height: auto; flex-wrap: nowrap; gap: 16px; }
+      .contact-bar-label { font-size: 13px; white-space: nowrap; flex: 0 0 auto; }
+      .contact-bar-items { gap: 24px; flex: 1 1 auto; justify-content: center; min-width: 0; }
+      .contact-link { font-size: 13.5px; white-space: nowrap; }
+      .contact-bar .btn-outline { font-size: 10px; padding: 10px 14px; white-space: nowrap; flex: 0 0 auto; }
 
       /* Dossier cta */
-      .dossier-cta-text h3 { font-size: 18px; white-space: normal; }
+      .dossier-cta-text h3 { font-size: 18px; white-space: normal; text-align: center; }
+      .dossier-cta .btn-solid { white-space: nowrap; font-size: 10.5px; padding: 12px 18px; flex: 0 0 auto; }
+
+      /* Sobre mí — títulos de credenciales para que quepan en una línea */
+      .sobre-credential { padding: 28px 20px 28px 0; }
+      .sobre-credential:last-child { padding-left: 20px; }
+      .sobre-credential:nth-child(2) { padding-left: 20px; }
+      .sobre-credential-title { font-size: clamp(18px, 2.2vw, 24px); white-space: nowrap; }
+      .sobre-credential-desc { font-size: 14.5px; }
 
       /* Sobre mí — foto centrada y línea completa */
       .sobre-right { align-self: stretch; display: flex; flex-direction: column; justify-content: center; align-items: center; }
@@ -1817,7 +1841,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       <div class="pillar">
         <span class="pillar-num">01</span>
         <h3 class="p1-title">Sin cajas negras</h3>
-        <p>Cada decisión tiene una explicación. Cada ajuste, una razón. El informe lleva al lector de la mano desde los datos hasta la conclusión, sin saltos que haya que asumir por fe.</p>
+        <p class="p1-body">Cada decisión tiene una explicación. Cada ajuste, una razón. El informe lleva al lector de la mano desde los datos hasta la conclusión, sin saltos que haya que asumir por fe.</p>
       </div>
       <div class="pillar">
         <span class="pillar-num">02</span>
@@ -1896,7 +1920,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       <h2 style="text-align:center;"><span class="servicios-title1">Pocas cosas,</span><br><em class="servicios-title2" style="font-style:normal;color:var(--ink-title);">bien hechas.</em></h2>
     </div>
     <div class="page-header-right">
-      <p style="font-size:18px;line-height:1.75;color:var(--ink-dim);font-weight:300;text-align:justify;"><span class="servicios-sub">"Quien mucho abarca, poco aprieta". Con los años hemos preferido centrarnos en pocos ámbitos donde podemos aportar algo de valor real. No por falta de curiosidad, sino por una cuestión de foco. Pocas cosas. Bien hechas.</span></p>
+      <p style="font-size:20px;line-height:1.75;color:var(--ink-dim);font-weight:300;text-align:justify;"><span class="servicios-sub">"Quien mucho abarca, poco aprieta". Con los años hemos preferido centrarnos en pocos ámbitos donde podemos aportar algo de valor real. No por falta de curiosidad, sino por una cuestión de foco. Pocas cosas. Bien hechas.</span></p>
     </div>
   </div>
 
@@ -2049,7 +2073,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       <h2 class="metodo-title">Sin cajas negras.<br><em>Cada número<br>tiene un porqué.</em></h2>
     </div>
     <div class="metodo-hero-right">
-      <p class="p1-body">Imagina que viajas de Vigo a Alicante. Llegas, y alguien te pregunta si has venido en coche, en tren o en avión. Esa pregunta tiene respuesta. En valoración ocurre lo mismo: una cosa es llegar a un número, y otra bastante distinta es poder explicar cómo se ha llegado hasta él. Aquí el camino siempre es visible.</p>
+      <p class="metodo-sub">Imagina que viajas de Vigo a Alicante. Llegas, y alguien te pregunta si has venido en coche, en tren o en avión. Esa pregunta tiene respuesta. En valoración ocurre lo mismo: una cosa es llegar a un número, y otra bastante distinta es poder explicar cómo se ha llegado hasta él. Aquí el camino siempre es visible.</p>
     </div>
   </div>
 
@@ -2247,7 +2271,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
     <h1 class="contacto-title" id="contacto-title">¿En qué te puedo<br><em>ayudar?</em></h1>
     <p class="contacto-sub" id="contacto-sub">Primero escuchamos. Hay casos que encajan perfectamente y otros donde lo más útil es orientar hacia quien puede ayudar mejor. La forma más rápida de saberlo es hablar.</p>
 
-    <a href="tel:+34648701624" class="contacto-phone llamar-link">+34 648 701 624</a>
+    <a href="tel:+34648701624" class="contacto-phone"><span class="llamar-ahora-label">Llamar ahora</span></a>
     <span class="contacto-phone-label phone-label">Llamada directa · Respuesta inmediata</span>
 
     <div class="contacto-links">
@@ -2261,7 +2285,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       </a>
       <a href="https://drive.google.com/file/d/1OWXI7KuMuBscosQLrARc1ms1k2ZToMRI/preview" target="_blank" class="contacto-link-row">
         <i class="ti ti-file-text"></i>
-        Dossier de servicios
+        <span class="dossier-servicios-label">Dossier de servicios</span>
       </a>
     </div>
 
@@ -2357,11 +2381,11 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       cta_servicios: "Ver servicios", cta_metodologia: "Metodología",
       // ENFOQUE
       enfoque_label: "Enfoque",
-      p1_title: "Sin cajas negras", p1_body: "Imagina que viajas de Vigo a Alicante. Llegas, y alguien te pregunta si has venido en coche, en tren o en avión. Esa pregunta tiene respuesta. En valoración ocurre lo mismo: una cosa es llegar a un número, y otra bastante distinta es poder explicar cómo se ha llegado hasta él. Aquí el camino siempre es visible.",
+      p1_title: "Sin cajas negras", p1_body: "Cada decisión tiene una explicación. Cada ajuste, una razón. El informe lleva al lector de la mano desde los datos hasta la conclusión, sin saltos que haya que asumir por fe.",
       p2_title: "La pregunta correcta", p2_body: "Antes de valorar, hay que entender para qué. La finalidad define el destino y el camino para alcanzarlo. Porque no todas las preguntas se responden de la misma manera.",
       p3_title: "Proporcional al encargo", p3_body: "No todo necesita 200 páginas. Ni todo puede resolverse en dos. El nivel de detalle se adapta a lo que el encargo requiere, no a lo que es más cómodo o más impresionante.",
       // CONTACTO BAR
-      contacto_directo: "Contacto directo", llamar: "Llamar ahora",
+      contacto_directo: "Contacto directo", llamar: "Llamar ahora", dossier_link: "Dossier de servicios",
       // DOSSIER
       dossier_title: "Metodología, enfoque y condiciones detalladas en un documento descargable.",
       dossier_btn: "Descargar dossier",
@@ -2425,14 +2449,14 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       s01_tag1: "Residential", s01_tag2: "Commercial", s01_tag3: "Industrial", s01_tag4: "Hotel", s01_tag5: "International Valuation Standards",
       s02_tag1: "Expert witness", s02_tag2: "Estates", s02_tag3: "Divorce", s02_tag4: "Complex litigation",
       s03_tag1: "IFRS 13", s03_tag2: "Spanish GAAP (PGC)", s03_tag3: "Impairment testing", s03_tag4: "Audit", s03_tag5: "Balance sheet assets",
-      s04_tag1: "Reference Value", s04_tag2: "Cadastre", s04_tag3: "Property Tax", s04_tag4: "Contradictory expert report",
+      s04_tag1: "Reference Value", s04_tag2: "Cadastre", s04_tag3: "Property Tax", s04_tag4: "Counter-expert report",
       s05_tag1: "Purchase & sale", s05_tag2: "Investment", s05_tag3: "Negotiation", s05_tag4: "Due diligence",
       sobre_p1: "I have been involved in real estate from different angles for nearly ten years: agency, expert witness work, teaching and valuation. If there is one thing this sector has taught me, it is that understanding a property is not just about looking at numbers. It is also about understanding people, timelines and decisions that often carry an enormous weight for those who have to make them.",
       sobre_p2: "Teaching — particularly valuation for court-appointed experts — changed the way I work quite significantly. Teaching forces you to order your thoughts, separate what matters from what does not, and ask yourself whether a concept is genuinely understood or just sounds technical.",
-      sobre_p3: "Pondus is the project where all of that is applied independently. In the process of accreditation with the Royal Institution of Chartered Surveyors. Member of the Asociación Profesional de Peritos Judiciales y Detectives Privados (APPJD), nº218.",
+      sobre_p3: "Pondus is the project where all of that comes together independently. Currently going through accreditation with the Royal Institution of Chartered Surveyors, and a member of the Asociación Profesional de Peritos Judiciales y Detectives Privados (APPJD), No. 218.",
       cred_etica_title: "Ethics", cred_etica_body: "Values and doing things right come before any result.",
       cred_cercania_title: "Closeness", cred_cercania_body: "Behind every valuation there are people, with their situations and stories that deserve to be heard.",
-      cred_claridad_title: "Clarity", cred_claridad_body: "The reasoning must be followable from beginning to end.",
+      cred_claridad_title: "Clarity", cred_claridad_body: "The reasoning must be traceable from beginning to end.",
       // NAV
       nav_inicio: "Home", nav_servicios: "Services", nav_metodologia: "Methodology",
       nav_sobre: "About", nav_contacto: "Contact",
@@ -2443,14 +2467,14 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       cta_servicios: "Our services", cta_metodologia: "Methodology",
       // ENFOQUE
       enfoque_label: "Approach",
-      p1_title: "No black boxes", p1_body: "Imagine you travel from one end of the country to the other. You arrive, and someone asks whether you came by car, train or plane. That question has an answer. The same applies to valuation: reaching a number is one thing — being able to explain how you got there is quite another. Here, the path is always visible.",
+      p1_title: "No black boxes", p1_body: "Every decision has an explanation. Every adjustment, a reason. The report walks the reader by the hand from the data to the conclusion, with no leaps to take on faith.",
       p2_title: "The right question", p2_body: "Before valuing, you need to understand what for. The purpose defines the destination and the way to reach it. Because not all questions are answered the same way.",
       p3_title: "Right-sized for the job", p3_body: "Not everything needs 200 pages. Nor can everything be resolved in two. The level of detail is shaped by what the assignment actually requires — not by what is easiest or most impressive.",
       // CONTACTO BAR
-      contacto_directo: "Direct contact", llamar: "Call now",
+      contacto_directo: "Direct contact", llamar: "Call now", dossier_link: "Services dossier",
       // DOSSIER
       dossier_title: "Methodology, approach and detailed terms in a downloadable document.",
-      dossier_btn: "Download brochure",
+      dossier_btn: "Download the dossier",
       // SERVICIOS
       servicios_eyebrow: "What we do",
       servicios_title1: "Few things,", servicios_title2: "done well.",
@@ -2459,7 +2483,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       s01_p1: "There are moments when a value stops being something you discuss over coffee and starts having real consequences. An important sale. An inheritance the family wants to resolve amicably. An estate that needs to be understood before any decision is made. That is where getting it right actually matters.",
       s01_p2: "Valuations of all types of real estate assets in line with international standards — from a flat, storage unit or retail premises to hotel assets and real property rights.",
       s02_title: "Expert witness",
-      s02_p1: "An expert valuation report has to hold up when someone pulls at the threads. A judge who asks questions. An opposing counsel looking for the gap. Another expert who challenges every decision. In those cases, the difference between a strong report and a weak one is not the final figure — it is whether the path to that figure is sufficiently reasoned and documented.",
+      s02_p1: "An expert valuation report has to hold up when someone pulls at the thread. A judge who asks questions. An opposing counsel looking for the gap. Another expert who challenges every decision. In those cases, the difference between a strong report and a weak one is not the final figure — it is whether the path to that figure is sufficiently reasoned and documented.",
       s02_p2: "Divorce and matrimonial property disputes, complex estates and other judicial proceedings.",
       s03_title: "Financial reporting",
       s03_p1: "Not every valuation ends up in a courtroom. Some end up in a balance sheet. And when a figure enters a company's accounts, it stops being just a number. It becomes part of investment decisions, audits, corporate restructurings and the true and fair view that financial statements are meant to reflect.",
@@ -2468,12 +2492,12 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       s04_p1: "Two things in life are certain: death and taxes. The problem is rarely paying them. It starts when someone looks at the figure and thinks: where did that come from? When the number does not reflect reality, it is worth understanding how it was reached and whether there is a technical basis to challenge it.",
       s04_p2: "Reference values, cadastral values, local property tax and assessments that do not match the actual property.",
       s05_title: "Advisory",
-      s05_p1: "Real estate runs largely on personal relationships and information passed from hand to hand. It also carries a fair amount of noise: conflicting opinions, trusted recommendations that may not always deserve the trust, chains of intermediaries. When significant assets are on the table, moving on uncertain ground is rarely a good idea. Sometimes what is needed is to turn that noise into something you can actually make decisions with.",
+      s05_p1: "Real estate runs largely on personal relationships and information passed from hand to hand. It also carries a fair amount of noise: conflicting opinions, recommendations that sound trustworthy but are not always reliable, chains of intermediaries. When significant assets are on the table, moving on uncertain ground is rarely a good idea. Sometimes what is needed is to turn that noise into something you can actually make decisions with.",
       s05_p2: "Technical support in acquisitions, investment, negotiation and due diligence.",
       // METODOLOGÍA
       metodo_eyebrow: "How we work",
       metodo_title: "No black boxes.<br><em>Every number<br>has a reason.</em>",
-      metodo_sub: "Imagine you travel from one end of the country to the other. You arrive, and someone asks whether you came by car, train or plane. That question has an answer. The same applies to valuation: reaching a number is one thing — being able to explain how you got there is quite another. Here, the path is always visible.",
+      metodo_sub: "Imagine you travel from Edinburgh to London. You arrive, and someone asks whether you came by car, train or plane. That question has an answer. The same applies to valuation: reaching a number is one thing — being able to explain how you got there is quite another. Here, the path is always visible.",
       m01_title: "What for?", m01_body: "Two people can ask for exactly the same valuation and need completely different reports. What changes is not the property. What changes is the question behind the request. That is why the work never starts with calculations. It starts with understanding what problem needs to be solved.",
       m02_title: "Scope assessment", m02_body: "Not every problem needs to be solved here. Some assignments call for different profiles or very specific expertise. We would rather say so from the outset than accept a job where another professional could add more value.",
       m03_title: "Proposal and engagement", m03_body: "Surprises are rarely a good way to start a professional relationship. Before a single document is reviewed, both parties need to know exactly what will be done, how it will be done and what can reasonably be expected from the work.",
@@ -2487,7 +2511,7 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
       sobre_p1: "I started in real estate on the agency side. That teaches you that the real market does not live on paper alone — it lives in conversations, negotiations and that uncomfortable gap between what someone thinks something is worth and where buyer and seller actually meet.",
       sobre_p2: "Over time I moved towards expert witness work. That brought a different side of the industry: disputes, estates, conflicts. And something curious: the need to explain things better. To be able to give a clear account of why you reach a conclusion when someone asks.",
       sobre_p3: "For some years now I have combined practice with teaching valuation. Teaching forces you to ask uncomfortable questions: about methodology, about judgement, about what actually makes a report good. The more I pulled at the thread, the more I found myself studying different ways of solving the same problems.",
-      cred1_title: "Agency", cred1_body: "The real market does not live on paper alone. It lives in conversations, negotiations and that uncomfortable gap between what someone thinks something is worth and where buyer and seller actually meet.",
+      cred1_title: "Estate agency", cred1_body: "The real market does not live on paper alone. It lives in conversations, negotiations and that uncomfortable gap between what someone thinks something is worth and where buyer and seller actually meet.",
       cred2_title: "Expert witness work", cred2_body: "Expert witness work brought a different side of the industry: disputes, estates, conflicts. And something curious: the need to explain things better — to give a clear account of why you reach a conclusion when someone asks.",
       cred3_title: "Teaching", cred3_body: "Teaching valuation forces you to ask uncomfortable questions: about methodology, about judgement, about what actually makes a report good. The more I pulled at the thread, the more I found myself studying different ways of solving the same problems.",
       filosofia_title: "Working philosophy",
@@ -2555,6 +2579,8 @@ c-19 -17 -38 -30 -42 -31 -4 0 -23 14 -42 31 l-35 30 32 29 c18 16 37 29 42
     set('.p3-title', l.p3_title); set('.p3-body', l.p3_body);
     set('.contacto-directo-label', l.contacto_directo);
     set('.llamar-link', l.llamar);
+    set('.llamar-ahora-label', l.llamar);
+    set('.dossier-servicios-label', l.dossier_link);
     set('.dossier-title', l.dossier_title);
     set('.dossier-btn', l.dossier_btn);
     // SERVICIOS
